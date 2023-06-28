@@ -1,7 +1,4 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
@@ -10,10 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["WEGGAPI.csproj", "."]
-RUN dotnet restore "./WEGGAPI.csproj"
+COPY ["Api/WEGGAPI.csproj", "Api/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["Service/Service.csproj", "Service/"]
+COPY ["Repository/Repository.csproj", "Repository/"]
+RUN dotnet restore "Api/WEGGAPI.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/Api"
 RUN dotnet build "WEGGAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
