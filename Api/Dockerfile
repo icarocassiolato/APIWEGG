@@ -10,16 +10,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["AffixErpApiGestaoMedica.csproj", "."]
-RUN dotnet restore "./AffixErpApiGestaoMedica.csproj"
+COPY ["WEGGAPI.csproj", "."]
+RUN dotnet restore "./WEGGAPI.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "AffixErpApiGestaoMedica.csproj" -c Release -o /app/build
+RUN dotnet build "WEGGAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "AffixErpApiGestaoMedica.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "WEGGAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "AffixErpApiGestaoMedica.dll"]
+ENTRYPOINT ["dotnet", "WEGGAPI.dll"]
