@@ -15,6 +15,6 @@ namespace Repository.Connection
         }
 
         public IDbConnection Connection() 
-            => new MySqlConnection(_configuration.GetConnectionString("Padrao"));
+            => new MySqlConnection(Environment.GetEnvironmentVariable("CONNECTION_STRING"));
     }
 }
