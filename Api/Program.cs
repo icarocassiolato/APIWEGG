@@ -15,6 +15,9 @@ builder.Services.AddSingleton<IConnectionFactory, ConnectionFactory>();
 builder.Services.AddSingleton<ICorretorService, CorretorService>();
 builder.Services.AddSingleton<ICorretorRepository, CorretorRepository>();
 
+builder.Services.AddSingleton<IUsuarioService, UsuarioService>();
+builder.Services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
@@ -27,9 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection()
+    .UseCors("AllowAllHeaders")
     .UseAuthentication()
-    .UseAuthorization()
-    .UseCors("AllowAllHeaders");
+    .UseAuthorization();
 
 app.MapControllers();
 

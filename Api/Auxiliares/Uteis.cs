@@ -1,7 +1,7 @@
 ﻿using Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WEGGAPI.Controllers
+namespace WEGGAPI.Auxiliares
 {
     public static class Uteis
     {

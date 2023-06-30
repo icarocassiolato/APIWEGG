@@ -2,7 +2,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
-using WEGGAPI.Controllers;
+using WEGGAPI.Auxiliares;
 
 namespace Api.Controllers
 {
