@@ -12,32 +12,32 @@ namespace Repository.Repositories
             _conexao = conexao;
         }
 
-        public IEnumerable<Corretor>? Consultar()
+        public async Task<IEnumerable<Corretor>?> Consultar()
         {
             using (var connectionDb = _conexao.Connection())
             {
                 connectionDb.Open();
-                return connectionDb.Query<Corretor>("SELECT * FROM Corretor");
+                return await connectionDb.QueryAsync<Corretor>("SELECT * FROM Corretor");
             }
         }
 
-        public Corretor? Consultar(int idCorretor)
+        public async Task<Corretor?> Consultar(int idCorretor)
         {
             using (var connectionDb = _conexao.Connection())
             {
                 connectionDb.Open();
-                return connectionDb.Query<Corretor>(
+                return await connectionDb.QuerySingleOrDefaultAsync<Corretor>(
                     "SELECT * FROM Corretor WHERE idCorretor = @idCorretor",
-                    new { idCorretor }).FirstOrDefault();
+                    new { idCorretor });
             }
         }
 
-        public bool Incluir(Corretor request)
+        public async Task<bool> Incluir(Corretor request)
         {
             using (var connectionDb = _conexao.Connection())
             {
                 connectionDb.Open();
-                return connectionDb.Execute(
+                return await connectionDb.ExecuteAsync(
                     @"INSERT INTO Corretor
                     (Nome, RG, CPFCNPJ, Nascimento, ComissaoPadrao, Autonomo, Whatsapp)
                     VALUES
@@ -46,12 +46,12 @@ namespace Repository.Repositories
             }
         }
     
-        public bool Alterar(Corretor request)
+        public async Task<bool> Alterar(Corretor request)
         {
             using (var connectionDb = _conexao.Connection())
             {
                 connectionDb.Open();
-                return connectionDb.Execute(
+                return await connectionDb.ExecuteAsync(
                     @"UPDATE Corretor
                     SET Nome = @Nome,
                     RG = @RG,
@@ -65,12 +65,12 @@ namespace Repository.Repositories
             }
         }
     
-        public bool Deletar(int idCorretor)
+        public async Task<bool> Deletar(int idCorretor)
         {
             using (var connectionDb = _conexao.Connection())
             {
                 connectionDb.Open();
-                return connectionDb.Execute(
+                return await connectionDb.ExecuteAsync(
                     @"DELETE 
                     FROM Corretor 
                     WHERE idCorretor = @idCorretor",

@@ -4,14 +4,14 @@ namespace Repository.Contracts
 {
     public interface ICorretorRepository
     {
-        public IEnumerable<Corretor>? Consultar();
+        Task<IEnumerable<Corretor>?> Consultar();
 
-        Corretor? Consultar(int idCorretor);
+        Task<Corretor?> Consultar(int idCorretor);
     
-        bool Incluir(Corretor request);
-    
-        bool Alterar(Corretor request);
-    
-        bool Deletar(int idCorretor);
+        Task<bool> Incluir(Corretor request);
+
+        Task<bool> Alterar(Corretor request);
+
+        Task<bool> Deletar(int idCorretor);
     }
 }

@@ -8,6 +8,11 @@
         public string? Senha { get; set; }
         public string? Email { get; set; }
 
+        public Usuario()
+        {
+
+        }
+
         public Usuario(int IdUsuario, string? Login, string? Nome, string? Senha, string? Email)
         {
             this.IdUsuario = IdUsuario;

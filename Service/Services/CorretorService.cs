@@ -13,19 +13,19 @@ namespace Service.Services
             _repository = repository;
         }
 
-        public IEnumerable<Corretor>? Consultar()
-            => _repository.Consultar();
+        public async Task<IEnumerable<Corretor>?> Consultar()
+            => await _repository.Consultar();
 
-        public Corretor? Consultar(int idCorretor)
-            => _repository.Consultar(idCorretor);
+        public async Task<Corretor?> Consultar(int idCorretor)
+            => await _repository.Consultar(idCorretor);
 
-        public bool Incluir(Corretor request)
-            => _repository.Incluir(request);
+        public async Task<bool> Incluir(Corretor request)
+            => await _repository.Incluir(request);
     
-        public bool Alterar(Corretor request)
-            => _repository.Alterar(request);
+        public async Task<bool> Alterar(Corretor request)
+            => await _repository.Alterar(request);
     
-        public bool Deletar(int idCorretor)
-            => _repository.Deletar(idCorretor);
+        public async Task<bool> Deletar(int idCorretor)
+            => await _repository.Deletar(idCorretor);
     }
 }

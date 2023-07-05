@@ -24,7 +24,7 @@ namespace Repository.Repositories
             }
         }
 
-        public async Task<bool> Incluir(Usuario request)
+        public async Task<bool> Incluir(UsuarioIncluirRequest request)
         {
             using (var connectionDb = _conexao.Connection())
             {

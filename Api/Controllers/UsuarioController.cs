@@ -21,11 +21,11 @@ namespace Api.Controllers
 
         [HttpGet("{idUsuario}")]
         public async Task<ActionResult<Usuario?>> Consultar(int idUsuario)
-            => Uteis.VerificarRetornoNulo(await _service.Consultar(idUsuario));
+            => await Uteis.VerificarRetornoNulo(await _service.Consultar(idUsuario));
 
         [HttpPost()]
-        public ActionResult<bool> Incluir(Usuario request)
-            => Ok(_service.Incluir(request)); 
+        public async Task<ActionResult<bool>> Incluir(UsuarioIncluirRequest request)
+            => Ok(await _service.Incluir(request)); 
     
         [HttpPut()]
         public ActionResult<bool> Alterar(Usuario request)

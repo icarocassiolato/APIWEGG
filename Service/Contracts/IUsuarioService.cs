@@ -7,7 +7,7 @@ namespace Service.Contracts
     {
         Task<Usuario?> Consultar(int idUsuario);
 
-        Task<bool> Incluir(Usuario request);
+        Task<bool> Incluir(UsuarioIncluirRequest request);
 
         Task<bool> Alterar(Usuario request);
 

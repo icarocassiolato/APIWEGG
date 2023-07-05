@@ -19,23 +19,23 @@ namespace Api.Controllers
         }
 
         [HttpGet()]
-        public ActionResult<IEnumerable<Corretor>?> Consultar()
-            => Uteis.VerificarRetornoNulo(_service.Consultar());
+        public async Task<ActionResult<IEnumerable<Corretor>?>> Consultar()
+            => await Uteis.VerificarRetornoNulo(await _service.Consultar());
 
         [HttpGet("{idCorretor}")]
-        public ActionResult<Corretor?> Consultar(int idCorretor)
-            => Uteis.VerificarRetornoNulo(_service.Consultar(idCorretor));
+        public async Task<ActionResult<Corretor?>> Consultar(int idCorretor)
+            => await Uteis.VerificarRetornoNulo(await _service.Consultar(idCorretor));
 
         [HttpPost()]
-        public ActionResult<bool> Incluir(Corretor request)
-            => Ok(_service.Incluir(request)); 
+        public async Task<ActionResult<bool>> Incluir(Corretor request)
+            => Ok(await _service.Incluir(request)); 
     
         [HttpPut()]
-        public ActionResult<bool> Alterar(Corretor request)
-            => Ok(_service.Alterar(request)); 
+        public async Task<ActionResult<bool>> Alterar(Corretor request)
+            => Ok(await _service.Alterar(request)); 
     
         [HttpDelete("{idCorretor}")]
-        public ActionResult<bool> Deletar(int idCorretor)
-            => Ok(_service.Deletar(idCorretor)); 
+        public async Task<ActionResult<bool>> Deletar(int idCorretor)
+            => Ok(await _service.Deletar(idCorretor)); 
     }
 }
