@@ -28,16 +28,16 @@ namespace Api.Controllers
             => Ok(await _service.Incluir(request)); 
     
         [HttpPut()]
-        public ActionResult<bool> Alterar(Usuario request)
-            => Ok(_service.Alterar(request)); 
+        public async Task<ActionResult<bool>> Alterar(Usuario request)
+            => Ok(await _service.Alterar(request)); 
     
         [HttpDelete("{idUsuario}")]
-        public ActionResult<bool> Deletar(int idUsuario)
-            => Ok(_service.Deletar(idUsuario));
+        public async Task<ActionResult<bool>> Deletar(int idUsuario)
+            => Ok(await _service.Deletar(idUsuario));
 
         [HttpPost("Login")]
-        public ActionResult<bool> Login(UsuarioLoginRequest request)
-            => Ok(_service.Login(request));
+        public async Task<ActionResult<bool>> Login(UsuarioLoginRequest request)
+            => Ok(await _service.Login(request));
 
     }
 }

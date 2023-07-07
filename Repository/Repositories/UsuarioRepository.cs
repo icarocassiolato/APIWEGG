@@ -72,7 +72,7 @@ namespace Repository.Repositories
             using (var connectionDb = _conexao.Connection())
             {
                 connectionDb.Open();
-                return await connectionDb.QuerySingleOrDefaultAsync(
+                return await connectionDb.QueryFirstOrDefaultAsync(
                     "SELECT * FROM Usuario WHERE Login = @login and Senha = @Senha",
                     request) != null;
             }

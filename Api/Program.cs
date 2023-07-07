@@ -19,6 +19,9 @@ builder.Services.AddSingleton<ICorretorRepository, CorretorRepository>();
 builder.Services.AddSingleton<IUsuarioService, UsuarioService>();
 builder.Services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
 
+builder.Services.AddSingleton<IImovelService, ImovelService>();
+builder.Services.AddSingleton<IImovelRepository, ImovelRepository>();
+
 builder.Services.AddSingleton<IWhatsappService, WhatsappService>();
 
 builder.Services.AddControllersWithViews();
